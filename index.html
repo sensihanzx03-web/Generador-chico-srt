@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CHICO SRT - GENERADOR</title>
     
-    <!-- CDN Oficial de Font Awesome para cargar los logotipos reales -->
-    <link rel="stylesheet" href="https://cloudflare.com">
+    <!-- ✅ CDN CORRECTO: Carga todos los iconos oficiales -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     
     <style>
         * {
@@ -150,8 +150,9 @@
         }
 
         .social-btn i {
-            font-size: 1.2rem;
-            width: 20px;
+            font-size: 1.3rem; /* Aumenté un poco el tamaño para que se vean mejor */
+            width: 22px;
+            text-align: center;
         }
 
         .social-btn:hover {
@@ -188,6 +189,7 @@
         <div id="socialBox" class="social-container">
             <div class="social-title">¡Sígueme en mis redes sociales!</div>
             
+            <!-- ✅ Iconos oficiales que se verán ahora: -->
             <a href="https://whatsapp.com" target="_blank" class="social-btn whatsapp">
                 <i class="fa-brands fa-whatsapp"></i> Canal de WhatsApp
             </a>
@@ -226,13 +228,11 @@
                     statusBox.innerHTML = '<i class="fas fa-check-circle" style="color: #25D366;"></i> ¡Tu KEY ya está lista!';
                     
                     const finalKey = generateNumericKey();
-                    
                     document.getElementById('keyDisplay').innerText = finalKey;
                     keyContainer.style.display = "block";
                     socialBox.style.display = "block"; 
                     actionBtn.style.display = "none";
                 }, 1500);
-
             }, 1500);
         }
 
@@ -244,4 +244,4 @@
         }
     </script>
 </body>
-  </html>
+</html>
