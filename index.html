@@ -1,1 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHICO SRT - GENERADOR</title>
+    
+    <!-- CDN Oficial de Font Awesome para cargar los logotipos reales -->
+    <link rel="stylesheet" href="https://cloudflare.com">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
+        body {
+            background: #09090e;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            background: rgba(20, 20, 35, 0.7);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 0, 127, 0.2);
+            box-shadow: 0 0 25px rgba(255, 0, 127, 0.15);
+            width: 100%;
+            max-width: 440px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            color: #ff007f;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .status-box {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            border-left: 4px solid #ff007f;
+            text-align: left;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #ff007f, #7f00ff);
+            color: #ffffff;
+            font-weight: bold;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(255, 0, 127, 0.3);
+        }
+
+        .btn:hover {
+            filter: brightness(1.2);
+            box-shadow: 0 6px 20px rgba(255, 0, 127, 0.5);
+        }
+
+        .btn:disabled {
+            background: #222;
+            color: #666;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .key-box {
+            display: none;
+            margin-top: 1.5rem;
+            background: rgba(255, 0, 127, 0.05);
+            border: 1px dashed #ff007f;
+            padding: 1rem;
+            border-radius: 6px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .key-text {
+            font-family: monospace;
+            font-size: 1.5rem;
+            color: #ff007f;
+            word-break: break-all;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .copy-btn {
+            background: transparent;
+            border: 1px solid #ff007f;
+            color: #ff007f;
+            padding: 0.4rem 1.2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover {
+            background: #ff007f;
+            color: #ffffff;
+        }
+
+        .social-container {
+            display: none;
+            margin-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .social-title {
+            font-size: 0.9rem;
+            color: #aaa;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 0.75rem;
+            border-radius: 6px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: transform 0.2s, filter 0.2s;
+        }
+
+        .social-btn i {
+            font-size: 1.2rem;
+            width: 20px;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.15);
+        }
+
+        .whatsapp { background: #25D366; }
+        .telegram { background: #0088cc; }
+        .tiktok { background: #000000; border: 1px solid #fe2c55; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>TU NOMBRE O CANAL</h1>
+        
+        <div id="status" class="status-box">
+            Presiona el botón para verificar tu sesión y reclamar tu KEY.
+        </div>
+
+        <button id="actionBtn" class="btn" onclick="generateLiteKey()">Obtener KEY DRIPCLIENT</button>
+
+        <div id="keyContainer" class="key-box">
+            <div id="keyDisplay" class="key-text">0000000000</div>
+            <button class="copy-btn" onclick="copyKey()">Copiar KEY</button>
+        </div>
+
+        <div id="socialBox" class="social-container">
+            <div class="social-title">¡Sígueme en mis redes sociales!</div>
+            
+            <a href="https://whatsapp.com" target="_blank" class="social-btn whatsapp">
+                <i class="fa-brands fa-whatsapp"></i> Canal de WhatsApp
+            </a>
+            <a href="https://tiktok.com" target="_blank" class="social-btn tiktok">
+                <i class="fa-brands fa-tiktok"></i> TikTok
+            </a>
+            <a href="https://t.me" target="_blank" class="social-btn telegram">
+                <i class="fa-brands fa-telegram"></i> Contacto Directo (Telegram)
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function generateNumericKey() {
+            const digits = '0123456789';
+            let key = '';
+            for (let i = 0; i < 10; i++) {
+                key += digits.charAt(Math.floor(Math.random() * digits.length));
+            }
+            return key;
+        }
+
+        function generateLiteKey() {
+            const statusBox = document.getElementById('status');
+            const actionBtn = document.getElementById('actionBtn');
+            const keyContainer = document.getElementById('keyContainer');
+            const socialBox = document.getElementById('socialBox');
+
+            actionBtn.disabled = true;
+            statusBox.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Espera, CHICO SRT está aprobando tu solicitud...';
+
+            setTimeout(() => {
+                statusBox.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generando tu KEY DRIPCLIENT...';
+                
+                setTimeout(() => {
+                    statusBox.innerHTML = '<i class="fas fa-check-circle" style="color: #25D366;"></i> ¡Tu KEY ya está lista!';
+                    
+                    const finalKey = generateNumericKey();
+                    
+                    document.getElementById('keyDisplay').innerText = finalKey;
+                    keyContainer.style.display = "block";
+                    socialBox.style.display = "block"; 
+                    actionBtn.style.display = "none";
+                }, 1500);
+
+            }, 1500);
+        }
+
+        function copyKey() {
+            const keyText = document.getElementById('keyDisplay').innerText;
+            navigator.clipboard.writeText(keyText).then(() => {
+                alert("¡KEY copiada con éxito!");
+            });
+        }
+    </script>
+</body>
+  </html>
